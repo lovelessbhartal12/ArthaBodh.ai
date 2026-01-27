@@ -5,26 +5,19 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
 
-# =====================================
-# CONFIG
-# =====================================
+
 PDF_PATH = "Webside Final budget Speech 2_15_qbn3jyt.pdf"
 
-# Nepali + English digits
+
 NUMBER_PATTERN = r"[0-9०-९]+"
 
 
-# =====================================
-# 1. LOAD PDF
-# =====================================
+
 loader = PyMuPDFLoader(PDF_PATH)
 documents = loader.load()
 
 
-# =====================================
-# 2. DATA-HEAVY PAGE DETECTION
-# (tables + statistical bullet points)
-# =====================================
+
 def is_data_heavy(text: str) -> bool:
     lines = [l.strip() for l in text.split("\n") if l.strip()]
     numeric_lines = sum(
@@ -33,10 +26,7 @@ def is_data_heavy(text: str) -> bool:
     return numeric_lines >= 2
 
 
-# =====================================
-# 3. EXTRACT STATISTICAL FACTS
-# (non-table numeric sentences)
-# =====================================
+
 def extract_stat_facts(text: str):
     facts = []
     keywords = [
@@ -56,9 +46,7 @@ def extract_stat_facts(text: str):
     return facts
 
 
-# =====================================
-# 4. TRUE TABLE ROW PARSER
-# =====================================
+
 def parse_table(text: str):
     rows = []
     for line in text.split("\n"):
@@ -69,9 +57,6 @@ def parse_table(text: str):
     return rows
 
 
-# =====================================
-# 5. NARRATIVE TEXT PROCESSING
-# =====================================
 text_sections = []
 for doc in documents:
     if not is_data_heavy(doc.page_content):
@@ -91,9 +76,7 @@ for chunk in text_chunks:
     })
 
 
-# =====================================
-# 6. STATISTICAL FACT CHUNKS
-# =====================================
+
 fact_chunks = []
 
 for doc in documents:
@@ -110,9 +93,7 @@ for doc in documents:
         )
 
 
-# =====================================
-# 7. TABLE → SENTENCE CONVERSION
-# =====================================
+
 table_chunks = []
 
 for doc in documents:
@@ -139,15 +120,11 @@ for doc in documents:
         )
 
 
-# =====================================
-# 8. FINAL DOCUMENTS (READY FOR RAG)
-# =====================================
+
 final_documents = text_chunks + fact_chunks + table_chunks
 
 
-# =====================================
-# 9. SANITY CHECK
-# =====================================
+
 print("Narrative chunks :", len(text_chunks))
 print("Statistical facts:", len(fact_chunks))
 print("Table sentences  :", len(table_chunks))

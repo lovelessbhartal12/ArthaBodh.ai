@@ -33,7 +33,7 @@ def extract_stat_facts_from_documents(documents):
     return fact_chunks
 
 
-#  TABLE → SENTENCE CONVERSION
+
 def parse_table(text):
     rows = []
     for line in text.split("\n"):
@@ -67,7 +67,7 @@ def table_to_sentences(documents):
     return table_chunks
 
 
-#  MAIN FUNCTION TO GET FINAL DOCUMENTS
+
 
 def get_final_documents(pdf_path="Webside Final budget Speech 2_15_qbn3jyt.pdf"):
     narrative_docs = get_cleaned_documents(pdf_path)
@@ -80,7 +80,7 @@ def get_final_documents(pdf_path="Webside Final budget Speech 2_15_qbn3jyt.pdf")
     return final_docs
 
 
-# SANITY CHECK
+
 
 if __name__ == "__main__":
     final_docs = get_final_documents()

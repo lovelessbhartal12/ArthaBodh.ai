@@ -2,7 +2,7 @@
 import streamlit as st
 from budget_chatbot import ask_budget_chatbot
 
-# Set page config
+
 st.set_page_config(
     page_title="Nepal Budget Chatbot",
     page_icon="💰",
@@ -17,10 +17,9 @@ st.markdown(
 """
 )
 
-# User input
 query = st.text_input("Question realted to Budget:", "")
 
-# Submit button
+
 if st.button("Submit"):
     if query.strip() == "":
         st.warning("कृपया पहिले प्रश्न लेख्नुहोस्।")
