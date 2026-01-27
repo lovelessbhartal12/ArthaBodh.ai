@@ -1,0 +1,8 @@
+streamlit
+langchain
+langchain-ollama
+transformers
+torch
+pdfplumber
+python-dotenv
+faiss-cpu
