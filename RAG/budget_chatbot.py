@@ -49,17 +49,4 @@ def ask_budget_chatbot(query, k=5):
 
     return text
 
-   
 
-
-
-
-
-    # return answer
-
-
-# if __name__ == "__main__":
-#     query = "प्रदेश ३ का विद्यालयहरूका लागि 2082/2083 को बजेटमा कस्तो व्यवस्था गरिएको छ? कृपया मात्र तथ्याङ्क र योजनामा आधारित जवाफ दिनुहोस्, बुलेट वा नम्बर बिना।"
-
-#     answer = ask_budget_chatbot(query)
-#     print("ANSWER:\n", answer)
