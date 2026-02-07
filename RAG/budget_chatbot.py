@@ -11,7 +11,7 @@ def ask_budget_chatbot(query, k=5):
     Returns plain Nepali answers.
     """
    
-    llm = load_llm(model_name="deepseek-v3.1:671b-cloud", temperature=0.3, max_output_tokens=512)
+    llm = load_llm()
 
     
     vector_store = build_and_save_vector_store()
@@ -26,8 +26,7 @@ def ask_budget_chatbot(query, k=5):
     prompt_template = budget_prompt()
 
    
-    final_prompt = prompt_template.format(context=context_text, question=query)
-    final_prompt = f"तपाईं नेपाली भाषामा मात्र उत्तर दिनुहोस्।\n\n{final_prompt}"
+    final_prompt = prompt_template.format(instruction=context_text, input=query)
 
  
     response = llm.generate([final_prompt])

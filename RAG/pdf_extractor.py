@@ -82,12 +82,6 @@ def get_final_documents(pdf_path="Webside Final budget Speech 2_15_qbn3jyt.pdf")
 
 
 
-if __name__ == "__main__":
-    final_docs = get_final_documents()
-    # print("Total documents:", len(final_docs))
-    from pprint import pprint
-    # pprint(final_docs[10].metadata)
-
   
 
 
