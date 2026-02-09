@@ -37,3 +37,6 @@ build/
 
 # Environment variables file (optional, if you have secrets)
 .env
+# FAISS / RAG generated files
+*.pkl
+RAG/faiss_budget_index/
