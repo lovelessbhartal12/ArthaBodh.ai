@@ -6,3 +6,16 @@ torch
 pdfplumber
 python-dotenv
 faiss-cpu
+torch 
+transformers 
+accelerate 
+datasets 
+peft
+bitsandbytes
+python-dotenv
+langchain-community
+pymupdf
+sentence-transformers
+sentencepiece
+tiktoken
+safetensors

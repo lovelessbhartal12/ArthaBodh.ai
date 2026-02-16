@@ -69,7 +69,7 @@ def table_to_sentences(documents):
 
 
 
-def get_final_documents(pdf_path="Webside Final budget Speech 2_15_qbn3jyt.pdf"):
+def get_final_documents(pdf_path="nepal_constituiton.pdf"):
     narrative_docs = get_cleaned_documents(pdf_path)
     raw_docs = load_pdf(pdf_path)
     
@@ -82,12 +82,11 @@ def get_final_documents(pdf_path="Webside Final budget Speech 2_15_qbn3jyt.pdf")
 
 
 
-if __name__ == "__main__":
-    final_docs = get_final_documents()
-    # print("Total documents:", len(final_docs))
-    from pprint import pprint
-    # pprint(final_docs[10].metadata)
+# if __name__ == "__main__":
+#     chunks = get_final_documents()
+#     for i, doc in enumerate(chunks[:5], 1):
+#         print(f"\n--- Chunk {i} ---")
+#         print(doc.page_content[:800])
+#         print("Metadata:", doc.metadata)
 
   
-
-

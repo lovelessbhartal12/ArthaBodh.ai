@@ -3,12 +3,22 @@ from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
-PDF_PATH = "Webside Final budget Speech 2_15_qbn3jyt.pdf"
+PDF_PATH = "nepal_constituiton.pdf"
 NUMBER_PATTERN = r"[0-9०-९]+"  
 
 def load_pdf(pdf_path=PDF_PATH):
+    """
+    Load PDF using PyMuPDFLoader and ensure UTF-8 encoding.
+    """
     loader = PyMuPDFLoader(pdf_path)
-    return loader.load()
+    docs = loader.load()
+    
+    # Ensure UTF-8 for all page content
+    for doc in docs:
+        if doc.page_content:
+            doc.page_content = doc.page_content.encode('utf-8', errors='ignore').decode('utf-8')
+    
+    return docs
 
 def is_data_heavy(text: str) -> bool:
     lines = [l.strip() for l in text.split("\n") if l.strip()]
@@ -25,7 +35,7 @@ def clean_narrative_documents(documents):
 
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=800,
-        chunk_overlap=100
+        chunk_overlap=150
     )
 
     text_chunks = text_splitter.split_documents(text_sections)
@@ -40,10 +50,3 @@ def clean_narrative_documents(documents):
 def get_cleaned_documents(pdf_path=PDF_PATH):
     docs = load_pdf(pdf_path)
     return clean_narrative_documents(docs)
-
-# # Optional sanity check
-# if __name__ == "__main__":
-#     cleaned_docs = get_cleaned_documents()
-#     print(f"Cleaned narrative chunks: {len(cleaned_docs)}")
-#     from pprint import pprint
-#     pprint(cleaned_docs[:2])

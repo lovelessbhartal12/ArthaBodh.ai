@@ -3,12 +3,12 @@ from langchain_core.prompts import PromptTemplate
 def budget_prompt():
     return PromptTemplate(
         template="""
-तपाईंले तलका कागजातहरू पढ्नुभयो:
-{context}
+Instruction: माथिको विवरण अनुसार
+ {input}
+Input: {instruction}
 
-प्रश्न: {question}
-
-नेपाली भाषामा छोटकरीमा स्पष्ट जवाफ दिनुहोस्।
+Response:
 """,
-        input_variables=["context", "question"]
+        input_variables=["instruction", "input"]
     )
+
