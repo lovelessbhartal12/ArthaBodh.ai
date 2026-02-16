@@ -40,3 +40,5 @@ build/
 # FAISS / RAG generated files
 *.pkl
 RAG/faiss_budget_index/
+RAG/faiss_budget_index1/
+RAG/qwen_nepali_budget_merged
