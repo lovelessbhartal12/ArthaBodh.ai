@@ -144,6 +144,4 @@ streamlit run app.py
 
 ## 👤 Author
 
-Loblesh Bhartal(RAG) & Roshan Acharya(Finetune)
-AI/ML Enthusiast
-Creator of ArthaBodh
+<table> <tr><td align="center"> <a href="https://github.com/lovelessbhartal12"> <img src="https://avatars.githubusercontent.com/u/103515260?v=4" width="100px;" alt="Contributor 2"/> <br /> <sub><b>Loblesh Bhartal(RAG)</b></sub> </a> </td>   <td align="center"> <a href="https://github.com/roshan-acharya"> <img src="https://avatars.githubusercontent.com/u/85246971?v=4" width="100px;" alt="Roshan Acharya"/> <br /> <sub><b>Roshan Acharya(Finetune)</b></sub> </a> </td> </table>
