@@ -4,8 +4,6 @@ An end-to-end Nepali Budget Question-Answering system that combines LoRA fine-tu
 
 The system is designed to understand instruction-based Nepali queries, retrieve relevant sections from official budget documents, and generate grounded, concise answers.
 
----
-
 ## 🚀 Features
 
 - Ask questions about Nepal’s national budget in Nepali
@@ -26,37 +24,46 @@ The system is designed to understand instruction-based Nepali queries, retrieve 
 
 ## 🧠 Tech Stack (with Purpose)
 
-- **Qwen 1.7b (Fine-tuned with LoRA)**  
-   Used as the **core language model**.
-  Fine-tuned on structured Nepali instruction-response data to specialize in budget-related queries.
+- **Qwen3-1.7B (Fine-tuned with LoRA)**
 
-- **LoRA (Low-Rank Adaptation)**  
-   Used to **generate dense multilingual embeddings** for reviews.  
-   Used for parameter-efficient fine-tuning.
-  Instead of training the full model, LoRA updates only attention projections (q, v) — making training lightweight and memory efficient.
+  Purpose: Acts as the core LLM for generating final answers in Nepali.
 
-- **XLM-RoBERTa (Fine-tuned)**  
-  Used for **sentiment analysis**.  
-  The model is fine-tuned on review data, enabling accurate sentiment detection for multilingual and code-mixed customer feedback.
+  Detail: It processes the retrieved chunks from the legal documents alongside the user query to provide contextually accurate responses.
 
-- **Facebook BART Large CNN**  
-  Used for **abstractive summarization**.  
-  Generates concise, high-quality summaries for each topic group.
+- **Multilingual E5 Base**
+  Purpose: Used to generate dense vector embeddings for Nepali text.
 
-- **Playwright**  
-  Used for **scraping Daraz reviews**.  
-  Handles JavaScript-rendered and dynamically loaded content that traditional scrapers cannot reliably extract.
+  Detail: This model transforms text chunks from the Nepal Sambidhan into mathematical vectors that capture semantic meaning, facilitating accurate retrieval.
 
-- **FastAPI**  
-  Used as the **backend service**.  
-  Handles scraping and heavy NLP processing while keeping the system modular and scalable.
+- **PEFT (LoRA)**
 
-- **Streamlit**  
-  Used for building the **interactive user interface**.  
-  Displays topics, summaries, and expandable review sections cleanly.
+  Purpose: Used for Parameter-Efficient Fine-Tuning of the Qwen model.
 
-- **Python**  
-  Core language used for orchestration, NLP pipelines, backend logic, and scraping.
+  Detail: By targeting the query and value projections, LoRA allows the model to adapt to the specific nuances of the Nepal Budget dataset without the high computational cost of full-parameter training.
+
+- **FAISS (Facebook AI Similarity Search)**
+
+  Purpose: Serves as the high-performance vector database.
+
+  Detail: It stores the embeddings of the split text and enables rapid "Retrieve Engine" functionality using Cosine Similarity to find the most relevant legal/budgetary context.
+
+- **Text Splitting (Recursive/Character)**
+
+  Purpose: Pre-processes the Nepal Sambidhan into manageable segments.
+
+  Detail: Ensures that the input to the embedding model stays within token limits while preserving the structural integrity of the legal articles.
+
+- **Python**
+
+  Purpose: The primary programming language for the entire pipeline.
+
+  Detail: Orchestrates the flow between the retrieval system (RAG) and the fine-tuned generation model.
+
+- **Instruction Preparation & Evaluation**
+
+  Purpose: Ensures the quality of the fine-tuning process.
+
+  Detail: Converts the Nepal Budget dataset into instruction-response pairs and monitors performance via training loss (0.2874) and validation loss (0.3028).
 
 ---
 
@@ -80,19 +87,13 @@ The system is designed to understand instruction-based Nepali queries, retrieve 
 
 6. Answer displayed in Streamlit UI
 
----
-
-## 🧪 Model Fine-tuning Pipeline
-
----
-
 ## ⚙️ Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/roshan-acharya/Review-Analyzer.git
-cd Review-Analyzer
+git clone https://github.com/lovelessbhartal12/ArthaBodh.ai
+cd ArthaBodh.ai
 ```
 
 ### 2. Create virtual environment
@@ -106,7 +107,7 @@ venv\Scripts\activate         # Windows
 ### 3. Install dependencies
 
 ```
-pip install -r requirements.txt
+pip install -r requirement.txt
 ```
 
 ### 4. Save Finetuned Model
